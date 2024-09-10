@@ -3,10 +3,10 @@ import Footer from './components/footer.js';
 import Main from './modules/ui.js';
 
 const root = document.querySelector('#root');
-function render() {
+async function render() {
   root.innerHTML = `
   ${Nav()}
-  ${Main()}
+  ${await Main()}
    ${Footer()}
    `;
 }

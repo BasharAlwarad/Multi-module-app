@@ -15,9 +15,15 @@ const list = (data) => {
 };
 
 const Main = async () => {
-  const res = await fetch('https://fakestoreapi.com/products');
-  const data = await res.json();
-  console.log(data);
-  return list(data);
+  const localStorageData = JSON.parse(localStorage.getItem('data'));
+  if (localStorageData) {
+    return list(localStorageData);
+  } else {
+    const res = await fetch('https://fakestoreapi.com/products');
+    const data = await res.json();
+    localStorage.setItem('data', JSON.stringify(data));
+    console.log(data);
+    return list(data);
+  }
 };
 export default Main;
